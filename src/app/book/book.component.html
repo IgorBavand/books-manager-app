@@ -1,6 +1,11 @@
 <div class="books-page-container">
   <h1 class="page-title">Book List</h1>
+
+  <button mat-raised-button color="primary" [routerLink]="['/books']">Cadastrar Novo</button>
+  <button mat-raised-button color="primary" [routerLink]="['/import-books']">Importar Excel</button>
+
   <div class="table-container mat-elevation-z8">
+
     <table mat-table [dataSource]="dataSource" class="full-width-table">
 
       <!-- ID Column -->

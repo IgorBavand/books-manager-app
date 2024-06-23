@@ -1,0 +1,20 @@
+<div class="book-import-container">
+  <h2>Import Books from Excel</h2>
+  <form (ngSubmit)="onSubmit()" #importForm="ngForm">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Colunas</mat-label>
+      <mat-select [(ngModel)]="columnId" name="columnId">
+        <mat-option *ngFor="let colunm of colunms" [value]="colunm.id">
+          {{colunm.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Removido matInput do campo de arquivo -->
+    <mat-label>Upload Excel File</mat-label>
+    <input type="file" (change)="onFileChange($event)" required>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!file || !columnId">Upload</button>
+  </form>
+</div>

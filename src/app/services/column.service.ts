@@ -1,22 +1,19 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpBaseService } from '../shared/base/http-base.service';
 import { Observable } from 'rxjs';
+import { Column } from '../models/Colunm';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BookService extends HttpBaseService {
-  private endpoint = 'api/books';
+export class ColumnService extends HttpBaseService {
+  private endpoint = 'api/columns';
 
   constructor(protected override readonly injector: Injector) {
     super(injector);
   }
 
-  getBooks(): Observable<any> {
+  getColumns(): Observable<Column[]> {
     return this.httpGet(this.endpoint);
-  }
-
-  importBooks(file: FormData): Observable<any> {
-    return this.httpPost(`${this.endpoint}/import`, file);
   }
 }
