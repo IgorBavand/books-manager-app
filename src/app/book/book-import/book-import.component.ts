@@ -5,6 +5,7 @@ import { SuccessDialogComponent } from 'src/app/components/success-dialog/succes
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { ColumnService } from 'src/app/services/column.service';
 import { Column } from 'src/app/models/Colunm';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-import',
@@ -21,13 +22,13 @@ export class BookImportComponent implements OnInit {
   constructor(
     private bookService: BookService,
     public dialog: MatDialog,
-    private columnService: ColumnService
+    private columnService: ColumnService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.columnService.getColumns().subscribe((res) => {
       this.colunms = res;
-      console.log(res);
     });
   }
 
@@ -45,11 +46,10 @@ export class BookImportComponent implements OnInit {
 
       this.bookService.importBooks(formData).subscribe(
         (response) => {
-          console.log('Books imported successfully!', response);
           this.dialog.open(SuccessDialogComponent);
+          this.router.navigate(['/']);
         },
         (error) => {
-          console.error('Error importing books', error);
           this.dialog.open(ErrorDialogComponent);
         }
       );

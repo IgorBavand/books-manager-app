@@ -11,7 +11,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookComponent } from './book/book.component';
 import { BookImportComponent } from './book/book-import/book-import.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SuccessDialogComponent } from './components/success-dialog/success-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
@@ -19,6 +19,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { BookFormComponent } from './book/book-form/book-form.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
     BookImportComponent,
     SuccessDialogComponent,
     ErrorDialogComponent,
+    BookFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

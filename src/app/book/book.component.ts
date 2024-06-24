@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BookService } from './book.service';
-import { Book } from './model/book.dto';
+import { Router } from '@angular/router';
+import { Book } from '../models/Book';
 
 /**
  * @title Table with pagination
@@ -23,20 +24,42 @@ export class BookComponent implements AfterViewInit, OnInit {
     'isbn',
     'pages',
     'language',
+    'actions',
   ];
   dataSource = new MatTableDataSource<Book>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private service: BookService) {}
+  constructor(private service: BookService, private router: Router) {}
 
   ngOnInit() {
+    this.loadBooks();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  loadBooks() {
     this.service.getBooks().subscribe((res) => {
       this.dataSource.data = res;
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  editBook(id: number) {
+    this.router.navigate(['/edit-book', id]);
+  }
+
+  deleteBook(id: number) {
+    if (confirm('Tem certeza que deseja excluir este livro?')) {
+      this.service.deleteBook(id).subscribe(
+        () => {
+          this.loadBooks();
+        },
+        (error) => {
+          console.error('Erro ao excluir livro', error);
+        }
+      );
+    }
   }
 }

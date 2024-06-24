@@ -1,0 +1,54 @@
+.books-form-page-container {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: #3f51b5; // cor primária do Angular Material
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+
+  mat-form-field {
+    flex: 1 1 45%;
+    min-width: 45%;
+
+    mat-label {
+      color: #3f51b5; // cor primária do Angular Material
+    }
+
+    input,
+    mat-select {
+      color: #000000; // cor do texto
+    }
+
+    mat-hint,
+    mat-error {
+      color: #f44336; // cor de erro
+    }
+  }
+
+  button {
+    width: 100%;
+    background-color: #3f51b5; // cor primária do Angular Material
+    color: #ffffff; // cor do texto do botão
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+
+    &:hover {
+      background-color: #303f9f; // cor de hover
+    }
+  }
+}

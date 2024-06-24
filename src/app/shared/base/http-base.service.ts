@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpBaseService {
   private readonly httpClient!: HttpClient;
 
-  private apiBase = 'http://localhost:8761/';
+  private apiBase = 'http://localhost:8022/'; //todo: trocar pela uri do gateway
 
   constructor(protected readonly injector: Injector) {
     if (injector == null || injector == undefined) {
@@ -23,7 +23,12 @@ export class HttpBaseService {
   }
 
   protected httpPost(endpoint: string, dados: any): Observable<any> {
-    return this.httpClient.post(`${this.apiBase}${endpoint}`, dados);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.httpClient.post(`${this.apiBase}${endpoint}`, dados, {
+      headers,
+    });
   }
 
   protected httpPut(endpoint: string, dados: any): Observable<any> {
