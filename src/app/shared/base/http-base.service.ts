@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpBaseService {
   private readonly httpClient!: HttpClient;
 
-  private apiBase = 'http://localhost:8022/'; //todo: trocar pela uri do gateway
+  private apiBase = 'http://192.168.0.132:8761/'; //troque pela URI do gateway em produção
 
   constructor(protected readonly injector: Injector) {
     if (injector == null || injector == undefined) {
@@ -19,25 +19,46 @@ export class HttpBaseService {
   }
 
   protected httpGet(endpoint: string): Observable<any> {
-    return this.httpClient.get(`${this.apiBase}${endpoint}`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Custom-Header': 'CustomValue', // Cabeçalho personalizado
+    });
+    return this.httpClient.get(`${this.apiBase}${endpoint}`, {
+      headers,
+      withCredentials: true,
+    });
   }
 
   protected httpPost(endpoint: string, dados: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'X-Custom-Header': 'CustomValue', // Cabeçalho personalizado
     });
     return this.httpClient.post(`${this.apiBase}${endpoint}`, dados, {
       headers,
+      withCredentials: true,
     });
   }
 
   protected httpPut(endpoint: string, dados: any): Observable<any> {
-    return this.httpClient.put(`${this.apiBase}${endpoint}`, dados);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Custom-Header': 'CustomValue', // Cabeçalho personalizado
+    });
+    return this.httpClient.put(`${this.apiBase}${endpoint}`, dados, {
+      headers,
+      withCredentials: true,
+    });
   }
 
   protected httpDelete(endpoint: string): Observable<any> {
-    return this.httpClient.delete(`${this.apiBase}${endpoint}`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Custom-Header': 'CustomValue', // Cabeçalho personalizado
+    });
+    return this.httpClient.delete(`${this.apiBase}${endpoint}`, {
+      headers,
+      withCredentials: true,
+    });
   }
-
-  // Tratamento erro e excessão
 }
