@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Success</h1>
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
-  <p>The books were imported successfully!</p>
+  <p>{{ data.message }}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="closeDialog()">OK</button>

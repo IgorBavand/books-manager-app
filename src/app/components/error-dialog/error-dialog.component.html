@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Error</h1>
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
-  <p>There was an error importing the books. Please try again.</p>
+  <p>{{ data.message }}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="closeDialog()">OK</button>

@@ -46,11 +46,21 @@ export class BookImportComponent implements OnInit {
 
       this.bookService.importBooks(formData).subscribe(
         (response) => {
-          this.dialog.open(SuccessDialogComponent);
+          this.dialog.open(SuccessDialogComponent, {
+            data: {
+              title: 'Sucesso!',
+              message: 'Arquivo importado com sucesso!',
+            },
+          });
           this.router.navigate(['/']);
         },
         (error) => {
-          this.dialog.open(ErrorDialogComponent);
+          this.dialog.open(ErrorDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'Erro ao importar arquivo.',
+            },
+          });
         }
       );
     }

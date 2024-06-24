@@ -68,11 +68,21 @@ export class BookFormComponent implements OnInit {
       } else {
         this.bookService.saveBook(book).subscribe(
           (response) => {
-            this.dialog.open(SuccessDialogComponent);
+            this.dialog.open(SuccessDialogComponent, {
+              data: {
+                title: 'Sucesso',
+                message: 'Livro cadastrado com sucesso!',
+              },
+            });
             this.router.navigate(['/books']);
           },
           (error) => {
-            this.dialog.open(ErrorDialogComponent);
+            this.dialog.open(ErrorDialogComponent, {
+              data: {
+                title: 'Sucesso',
+                message: 'Erro ao cadastrar livro!',
+              },
+            });
           }
         );
       }
