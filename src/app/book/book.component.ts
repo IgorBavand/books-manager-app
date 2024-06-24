@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BookService } from './book.service';
 import { Router } from '@angular/router';
 import { Book } from '../models/Book';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 /**
  * @title Table with pagination
@@ -30,7 +32,11 @@ export class BookComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private service: BookService, private router: Router) {}
+  constructor(
+    private service: BookService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.loadBooks();
@@ -50,16 +56,21 @@ export class BookComponent implements AfterViewInit, OnInit {
     this.router.navigate(['/edit-book', id]);
   }
 
-  deleteBook(id: number) {
-    if (confirm('Tem certeza que deseja excluir este livro?')) {
-      this.service.deleteBook(id).subscribe(
-        () => {
+  deleteBook(bookId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: {
+        title: 'Tem certeza?',
+        message: 'Tem certeza que deseja excluir este livro?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.deleteBook(bookId).subscribe(() => {
           this.loadBooks();
-        },
-        (error) => {
-          console.error('Erro ao excluir livro', error);
-        }
-      );
-    }
+        });
+      }
+    });
   }
 }

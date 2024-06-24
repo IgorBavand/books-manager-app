@@ -20,6 +20,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { BookFormComponent } from './book/book-form/book-form.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BookFormComponent } from './book/book-form/book-form.component';
     SuccessDialogComponent,
     ErrorDialogComponent,
     BookFormComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
