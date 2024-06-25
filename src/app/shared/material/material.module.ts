@@ -1,4 +1,4 @@
-import { NgModule, ViewChild } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
@@ -8,9 +8,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -21,22 +21,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatTableModule,
     MatSortModule,
-    MatPaginatorModule,
-    DatePipe,
     MatInputModule,
     MatFormFieldModule,
-    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
+  ],
+  exports: [
+    MatListModule,
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    BrowserAnimationsModule,
+    MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
   ],
-  exports: [MatListModule, MatButtonModule, MatTableModule, MatPaginatorModule],
+  providers: [DatePipe],
 })
 export class MaterialModule {}
