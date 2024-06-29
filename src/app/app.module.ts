@@ -23,6 +23,7 @@ import { BookFormComponent } from './book/book-form/book-form.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ErrorDialogComponent,
     BookFormComponent,
     ConfirmDialogComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,

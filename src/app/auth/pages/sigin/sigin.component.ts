@@ -45,6 +45,8 @@ export class SiginComponent implements OnInit {
     this.authLogin = Object.assign('', this.authLogin, this.loginForm.value);
     this.authLogin.username = this.authLogin.username.toLowerCase();
 
+    console.log('entrou no login');
+
     this.authService
       .login({
         username: this.authLogin.username,
@@ -52,7 +54,9 @@ export class SiginComponent implements OnInit {
       })
       .subscribe(
         (user) => {
+          console.log(user);
           if (user) {
+            console.log('testessssssss');
             this.router.navigateByUrl('/books');
           }
         },

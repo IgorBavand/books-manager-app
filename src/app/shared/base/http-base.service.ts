@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpBaseService {
   private readonly httpClient!: HttpClient;
 
-  private apiBase = 'http://localhost:8761/'; //troque pela URI do gateway em produção
+  private apiBase = 'http://localhost:8022/'; //troque pela URI do gateway em produção
 
   constructor(protected readonly injector: Injector) {
     if (injector == null || injector == undefined) {
