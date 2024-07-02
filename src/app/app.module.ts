@@ -24,6 +24,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     BookFormComponent,
     ConfirmDialogComponent,
     ToolbarComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     {
       provide: LOCALE_ID,
       useValue: 'pt-PT',
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
