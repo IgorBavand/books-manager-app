@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { HttpBaseService } from '../shared/base/http-base.service';
 import { Login } from '../models/Login';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AuthenticationService extends HttpBaseService {
   private subjectUser: BehaviorSubject<any> = new BehaviorSubject(null);
   private subjectLogin: BehaviorSubject<any> = new BehaviorSubject(false);
 
-  private endpointLogin = 'api/auth/login';
+  private baseUrl = 'api/auth/';
   private endpointRefresh = 'api/auth/refresh-token';
 
   constructor(protected override readonly injector: Injector) {
@@ -19,7 +20,7 @@ export class AuthenticationService extends HttpBaseService {
   }
 
   login(login: Login): Observable<any> {
-    return this.httpPost(`${this.endpointLogin}`, login).pipe(
+    return this.httpPost(`${this.baseUrl}login`, login).pipe(
       map((response) => {
         this.storeTokens(response.accessToken, response.refreshToken);
         this.subjectUser.next(response.user);
@@ -27,6 +28,10 @@ export class AuthenticationService extends HttpBaseService {
         return response.user;
       })
     );
+  }
+
+  register(user: User): Observable<any> {
+    return this.httpPost(`${this.baseUrl}register`, user);
   }
 
   logout() {

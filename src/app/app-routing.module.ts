@@ -4,6 +4,7 @@ import { BookComponent } from './book/book.component';
 import { BookImportComponent } from './book/book-import/book-import.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { AuthGuard } from './auth/auth.guard';
+import { RegisterComponent } from './auth/pages/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'books', pathMatch: 'full' },
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
 ];
 
 @NgModule({
