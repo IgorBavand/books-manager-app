@@ -58,9 +58,21 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Idioma</mat-label>
       <input matInput formControlName="language" required>
+      <mat-error *ngIf="bookForm.get('language')?.invalid && bookForm.get('language')?.touched">
+        Idioma é obrigatório.
+      </mat-error>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Idioma</mat-label>
+      <mat-select formControlName="language" required>
+        <mat-option *ngFor="let language of languages" [value]="language">
+          {{ language }}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="bookForm.get('language')?.invalid && bookForm.get('language')?.touched">
         Idioma é obrigatório.
       </mat-error>
