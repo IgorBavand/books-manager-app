@@ -12,15 +12,29 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterComponent {
 
   hide = true;
+  hideConfirmPassword = true;
   userForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
 
     this.userForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]]
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validators: this.passwordMatchValidator
     });
 
+  }
+
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
+    if (password !== confirmPassword) {
+      formGroup.get('confirmPassword')?.setErrors({ mismatch: true });
+    } else {
+      formGroup.get('confirmPassword')?.setErrors(null);
+    }
   }
 
   onSubmit() {
